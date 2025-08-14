@@ -19,15 +19,16 @@ jobs:
         uses: flipperdevices/flipperzero-ufbt-action@v0.1
         id: build-app
         with:
-          sdk-channel: dev  # Change to 'release' if you prefer stable SDK
+          sdk-channel: dev  # change to 'release' if you prefer stable SDK
 
       - name: Upload .fap artifact
         uses: actions/upload-artifact@v4
         with:
-          name: "${{ github.repository }}-${{ steps.build-app.outputs.suffix }}"
+          # Use repo name only (no slash) + SDK suffix from the action
+          name: "${{ github.event.repository.name }}-${{ steps.build-app.outputs.suffix }}"
           path: ${{ steps.build-app.outputs.fap-artifacts }}
 
-      - name: Lint source (optional, ensures formatting)
+      - name: Lint source (optional)
         uses: flipperdevices/flipperzero-ufbt-action@v0.1
         with:
           skip-setup: true
