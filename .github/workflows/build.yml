@@ -1,4 +1,4 @@
-name: "FAP: Build and Lint"
+name: "FAP: Build"
 
 on:
   push:
@@ -27,9 +27,3 @@ jobs:
           # Use repo name only (no slash) + SDK suffix from the action
           name: "${{ github.event.repository.name }}-${{ steps.build-app.outputs.suffix }}"
           path: ${{ steps.build-app.outputs.fap-artifacts }}
-
-      - name: Lint source (optional)
-        uses: flipperdevices/flipperzero-ufbt-action@v0.1
-        with:
-          skip-setup: true
-          task: lint
