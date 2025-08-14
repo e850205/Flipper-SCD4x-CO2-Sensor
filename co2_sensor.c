@@ -73,7 +73,7 @@ static void render_callback(Canvas* canvas, void* ctx) {
 
         // Draw temperature and humidity values
         canvas_draw_str(canvas, 72, 24, ts_data_buffer_temperature_c);
-        canvas_draw_str(canvas, 102, 24, "C");
+        canvas_draw_str(canvas, 102, 24, "F");
         canvas_draw_str(canvas, 72, 38, ts_data_buffer_humidity);
         canvas_draw_str(canvas, 102, 38, "%");
         canvas_draw_str(canvas, 72, 52, ts_data_buffer_co2);
@@ -159,7 +159,8 @@ int32_t co2_sensor_app(void* p) {
 
                 notification_message(notifications, &sequence_blink_blue_100);
 
-                snprintf(ts_data_buffer_temperature_c, DATA_BUFFER_SIZE, "%.2f", (double) celsius);
+                float fahrenheit = (celsius * 9.0 / 5.0) + 32.0;
+                snprintf(ts_data_buffer_temperature_c, DATA_BUFFER_SIZE, "%.2f", (double) fahrenheit);
                 snprintf(ts_data_buffer_humidity, DATA_BUFFER_SIZE, "%.2f", (double) humidity);
                 snprintf(ts_data_buffer_co2, DATA_BUFFER_SIZE, "%d", co2);
             }
