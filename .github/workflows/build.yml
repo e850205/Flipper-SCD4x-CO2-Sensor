@@ -22,7 +22,7 @@ jobs:
           sdk-channel: dev  # Change to 'release' if you prefer stable SDK
 
       - name: Upload .fap artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: "${{ github.repository }}-${{ steps.build-app.outputs.suffix }}"
           path: ${{ steps.build-app.outputs.fap-artifacts }}
